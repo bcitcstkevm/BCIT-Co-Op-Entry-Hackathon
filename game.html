@@ -12,7 +12,7 @@
     <p id='hiscoore'></p>
     <script>
         let word = "vocabulary"
-        let syllables = ["vo", "cab", "bu", "lary", "test", "test", "test", "test"]
+        let syllables = ["vo", "ca", "bu", "lary", "test", "test", "test", "test"]
         let to_be_added = [];
         let clicked = "";
 
@@ -29,9 +29,19 @@
         });
 
         function clickHandler(){
-            clicked += this.innerHTML
+            clicked += this.innerHTML;
+            //change color of button
+            //check correctness
+            is_correct()
+            console.log(this.innerHTML)
+            console.log(clicked)
 
-            console.log("test")
+        }
+
+        function is_correct(){
+            if (clicked === word){
+                console.log("you win")
+            }
         }
     
     </script>
