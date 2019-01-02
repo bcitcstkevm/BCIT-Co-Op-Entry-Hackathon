@@ -1,3 +1,25 @@
+body{
+  margin: 0px;
+}
+
+.spacer{
+  height: 100px;
+}
+
+#title{
+  text-align: center;
+}
+
+#btnPlay{
+  text-align:center;
+}
+
+form{
+  margin-top: 50px;
+  margin-bottom: 50px;
+  text-align:center;
+}
+
 body#container {
   height: 100%;
   width: 100%;
@@ -10,4 +32,3 @@ div.syllable {
   position: fixed;
   top: 100px;
   left: 100px;
-}

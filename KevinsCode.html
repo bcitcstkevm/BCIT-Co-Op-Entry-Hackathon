@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> -->
+    <title>Fill/Game</title>
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <script src="main.js"></script> -->
+</head>
+
+<body>
+    <p id='hiscoore'></p>
+
+    <input type="file" id="file-input">
+    <div id="file-content"></div>
+
+    <script>
+        // let word = "vocabulary"
+        // let syllables = ["vo", "ca", "bu", "lary", "test", "test", "test", "test"]
+        // let to_be_added = [];
+        // let clicked = "";
+
+
+        // syllables.forEach(element => {
+        //     let temp = document.createElement("button");
+        //     temp.innerHTML = element;
+        //     temp.onclick = clickHandler;
+        //     to_be_added.push(temp)            
+        // });
+
+        // to_be_added.forEach(element => {
+        //     document.body.appendChild(element);
+        // });
+
+        // function clickHandler(){
+        //     clicked += this.innerHTML;
+        //     //change color of button
+        //     //check correctness
+        //     is_correct()
+        //     console.log(this.innerHTML)
+        //     console.log(clicked)
+
+        // }
+
+        // function is_correct(){
+        //     if (clicked === word){
+        //         console.log("you win")
+        //     }
+        // }
+
+        // function break_word_to_syllables(word){
+        //     result = []
+
+
+        // }
+
+        const syllableRegex = /[^aeiouy]*[aeiouy]+(?:[^aeiouy]*$|[^aeiouy](?=[^aeiouy]))?/gi;
+
+        //match:
+        //zero or more set of constant, then
+        //one or more set of set of vowels, then,
+        //either:
+        //consonant followed by end of word, or,
+        //consonant followed by another consonant
+
+        function syllabify(words) {
+            //takes a string and returns a list
+            return words.match(syllableRegex);
+        }
+
+        // function get_list_of_words(url) {
+        //     fetch("words.txt")
+        //         .then(console.log())
+        // }
+
+        console.log(syllabify("supercalifragilisticexpialidocious"))
+
+        function readSingleFile(e) {
+            var file = e.target.files[0];
+            if (!file) {
+                return;
+            }
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                var contents = e.target.result;
+                // Display file content
+                // console.log(contents.split("\n"))
+                // displayContents(contents);
+                window.localStorage.setItem("word_data", contents.split('\n'))
+            };
+            reader.readAsText(file);
+        }
+
+        function displayContents(contents) {
+            var element = document.getElementById('file-content');
+            element.innerHTML = contents;
+        }
+
+        document.getElementById('file-input').addEventListener('change', readSingleFile, false);
+
+    </script>
+
+</body>
+
+</html>
