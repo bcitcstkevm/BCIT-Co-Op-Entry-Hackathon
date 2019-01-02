@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> -->
+    <title>Fill/Game</title>
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <script src="main.js"></script> -->
+</head>
+<body>
+    <p id='hiscoore'></p>
+    <script>
+        let word = "vocabulary"
+        let syllables = ["vo", "cab", "bu", "lary", "test", "test", "test", "test"]
+        let to_be_added = [];
+        let clicked = "";
+
+
+        syllables.forEach(element => {
+            let temp = document.createElement("button");
+            temp.innerHTML = element;
+            temp.onclick = clickHandler;
+            to_be_added.push(temp)            
+        });
+
+        to_be_added.forEach(element => {
+            document.body.appendChild(element);
+        });
+
+        function clickHandler(){
+            clicked += this.innerHTML
+
+            console.log("test")
+        }
+    
+    </script>
+    
+</body>
+</html>
