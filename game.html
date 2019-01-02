@@ -12,6 +12,10 @@
 
 <body>
     <p id='hiscoore'></p>
+
+    <input type="file" id="file-input">
+    <div id="file-content"></div>
+
     <script>
         // let word = "vocabulary"
         // let syllables = ["vo", "ca", "bu", "lary", "test", "test", "test", "test"]
@@ -66,7 +70,35 @@
             return words.match(syllableRegex);
         }
 
+        // function get_list_of_words(url) {
+        //     fetch("words.txt")
+        //         .then(console.log())
+        // }
+
         console.log(syllabify("supercalifragilisticexpialidocious"))
+
+        function readSingleFile(e) {
+            var file = e.target.files[0];
+            if (!file) {
+                return;
+            }
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                var contents = e.target.result;
+                // Display file content
+                // console.log(contents.split("\n"))
+                // displayContents(contents);
+                window.localStorage.setItem("word_data", contents.split('\n'))
+            };
+            reader.readAsText(file);
+        }
+
+        function displayContents(contents) {
+            var element = document.getElementById('file-content');
+            element.innerHTML = contents;
+        }
+
+        document.getElementById('file-input').addEventListener('change', readSingleFile, false);
 
     </script>
 
