@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body style = "background-color: black;">
+      <p style="top:0; right: 6%; position: fixed; color: white; font-size: 30px;">Score:</p>
+      <p id="score" style = "top:0; right: 4%; position: fixed; color:white; font-size: 30px;">0</p>
+
+      <button id="skip" style= "bottom:2%; right: 50%; position:fixed; font-size: 23px;">Skip</button> 
+
+  <script>
+
+  let startscore = parseInt(0);
+  let skip_button = document.createElement("button");
+
+
+  function scoreboard() {
+    document.getElementById("score").innerHTML = startscore = startscore + 1; // 
+  }         
+  
+  function skip_word() {
+    //skip to next word on the list
+  }
+
+  </script>
+
+  </body>
+</html>
