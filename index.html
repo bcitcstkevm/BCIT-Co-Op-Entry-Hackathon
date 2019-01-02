@@ -69,10 +69,10 @@
       </div>
       <div class="col-sm-8">
         <form>
-          <input type="radio" name="file" value="common" checked> Common Mistake Words
-          <input type="radio" name="file" value="file"> File
+          <input id="option1" type="radio" name="file" value="common" checked> Common Mistake Words
+          <input id="option2" type="radio" name="file" value="file"> File
         </form>
-        <form action="/action_page.php">
+        <form action="/action_page.php" id="fileLink">
           <input type="file" name="pic" accept="image/*">
           <input type="submit">
         </form>
@@ -99,5 +99,13 @@
   <script src="./src/js/mainscript.js"></script>
   <script src="./src/js/bootstrap.js"></script>
   <script src="./src/js/bootstrap.bundle.js"></script>
+  <script>
+  $("#option2").click(function() {
+      $("#fileLink").show();
+  });
+    $("#option1").click(function() {
+      $("#fileLink").hide();
+  });
+  </script>
 </body>
 </html>
