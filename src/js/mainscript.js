@@ -81,6 +81,8 @@ $('#test').on('click', function() {
 // DOCUMENT READY
 $(document).ready(function() {
 
+  console.log(window.localStorage.getItem('word_data')[0]);
+
 
   var audio = document.getElementById('word-audio');
 

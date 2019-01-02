@@ -72,8 +72,8 @@
           <input type="radio" name="file" value="common" checked> Common Mistake Words
           <input type="radio" name="file" value="file"> File
         </form>
-        <form action="/action_page.php">
-          <input type="file" name="pic" accept="image/*">
+        <form>
+          <input id="file-input" type="file" name="pic" accept="image/*">
           <input type="submit">
         </form>
       </div>
@@ -96,7 +96,31 @@
   </div>
 
   <script src="./src/js/jquery-3.3.1.js"></script>
-  <script src="./src/js/mainscript.js"></script>
+  <!-- <script src="./src/js/mainscript.js"></script> -->
+  <script>
+    function readSingleFile(e) {
+        var file = e.target.files[0];
+        if (!file) {
+            return;
+        }
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            var contents = e.target.result;
+            // Display file content
+            // console.log(contents.split("\n"))
+            // displayContents(contents);
+            window.localStorage.setItem("word_data", contents.split('\n'))
+        };
+        reader.readAsText(file);
+    }
+
+    function displayContents(contents) {
+        var element = document.getElementById('file-content');
+        element.innerHTML = contents;
+    }
+
+    document.getElementById('file-input').addEventListener('change', readSingleFile, false);
+  </script>
   <script src="./src/js/bootstrap.js"></script>
   <script src="./src/js/bootstrap.bundle.js"></script>
 </body>
