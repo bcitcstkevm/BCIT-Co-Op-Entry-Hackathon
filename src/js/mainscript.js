@@ -66,7 +66,7 @@ var dummy = "vocabulary";
 
 // Function to get the Ultimate Json for audio links
 function getUltimate(){
-  return $.getJSON('./src/data/ultimate.json');
+  return $.getJSON('../src/data/ultimate.json');
 }
 
 
