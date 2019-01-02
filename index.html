@@ -109,7 +109,7 @@
             // Display file content
             // console.log(contents.split("\n"))
             // displayContents(contents);
-            window.localStorage.setItem("word_data", contents.split('\n'))
+            window.localStorage.setItem("word_data", JSON.stringify(contents.split('\n')))
         };
         reader.readAsText(file);
     }
