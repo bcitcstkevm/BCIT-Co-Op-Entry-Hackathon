@@ -69,10 +69,6 @@ function getUltimate(){
   return $.getJSON('./src/data/ultimate.json');
 }
 
-$.getJSON('./src/data/ultimate.json', function(json) {
-  console.log(json.);
-})
-
 
 
 
@@ -107,16 +103,21 @@ $(document).ready(function() {
     audio.playbackRate = 2.0;
   });
 
-  // getUltimate().done(function(json) {
-  //   console.log(Object.keys(json).length);
-  //   console.log(json);
-  // })
+  getUltimate().done(function(json) {
+    console.log(json[dummy]);
+    console.log(parseaws(dummy, json));
+    $('#word-audio').attr('src', parseaws(dummy, json))
+  })
 
 
 })
 
 function parseaws(word, json) {
-  for (var i = 0; i < json.length; i++) {
+  var loLinks = json[word];
+  for (var i = 0; i < loLinks.length; i++) {
+    if (loLinks[i].startsWith("http://s3.amazonaws.com")) {
+      return loLinks[i];
+    }
 
   }
 }
