@@ -45,11 +45,12 @@
     </nav>
   </header> -->
   <div class="container">
+    <div class="spacer"></div>
     <div class="row">
       <div class="col-sm-2">
       </div>
       <div class="col-sm-8">
-        <h1 id="title">Vocab Constructor</h1>
+        <h1 id="title">Stich Vocab Game</h1>
       </div>
       <div class="col-sm-2">
       </div>
@@ -58,16 +59,34 @@
       <div class="col-sm-2">
       </div>
       <div class="col-sm-8">
-        <h2 id="title">Welcome Learn Now</h2>
+        <h5 id="title">Click Play To Start Now</h5>
       </div>
       <div class="col-sm-2">
       </div>
     </div>
+    <div class="row">
+      <div class="col-sm-2">
+      </div>
+      <div class="col-sm-8">
+        <form>
+          <input type="radio" name="file" value="common" checked> Common Mistake Words
+          <input type="radio" name="file" value="file"> File
+        </form>
+        <form action="/action_page.php">
+          <input type="file" name="pic" accept="image/*">
+          <input type="submit">
+        </form>
+      </div>
+      <div class="col-sm-2">
+      </div>
+    </div>
+
     <div class="row">
       <div class="col-sm">
       </div>
       <div class="col-sm" id="btnPlay">
-        <button type="button" class="btn btn-primary" id="btn">Play!</button>
+        <a href="stichGame/index.html" class="btn btn-primary btn-lg">Play!</a>
+        <!-- <button type="button" class="btn btn-primary btn-lg" id="btn" href="./stichGame/stichGame.html">Play!</button> -->
       </div>
       <div class="col-sm">
       </div>

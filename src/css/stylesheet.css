@@ -1,19 +1,21 @@
 body{
   margin: 0px;
-
 }
+
+.spacer{
+  height: 100px;
+}
+
 #title{
   text-align: center;
-}
-
-#btn{
-  margin: 0 auto;
 }
 
 #btnPlay{
   text-align:center;
 }
 
-.col-sm{
-
+form{
+  margin-top: 50px;
+  margin-bottom: 50px;
+  text-align:center;
 }
