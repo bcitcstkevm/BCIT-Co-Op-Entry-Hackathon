@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Stitch Game</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" href="../../src/css/bootstrap.css"/>
+    <link rel="stylesheet" href="../../src/css/bootstrap-grid.css"/>
+    <link rel="stylesheet" href="../../src/css/bootstrap-reboot.css"/>
+    <link rel="stylesheet" href="../../src/css/stylesheet.css"/>
+    <style>
+      #winpage {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+
+    </style>
+  </head>
+  <body id="winpage">
+    <div id="maincontent">
+      <h1>YOU WIN</h1>
+
+      <a class="btn btn-primary btn-lg btn-block" href="../../index.html" id="home-button" role="button">Home</a>
+    </div>
+
+
+  <script src="../../src/js/jquery-3.3.1.js"></script>
+  <script>
+    $(document).ready(function() {
+      window.localStorage.setItem('score', 0);
+    })
+  </script>
+  <script src="../../src/js/bootstrap.js"></script>
+  <script src="../../src/js/bootstrap.bundle.js"></script>
+  </body>
+</html>

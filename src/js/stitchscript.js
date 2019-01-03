@@ -58,7 +58,7 @@
 // DUMMY DATA______________
 
 
-var dummy = "vocabulary";
+var word = "vocabulary";
 const syllableRegex = /[^aeiouy]*[aeiouy]+(?:[^aeiouy]*$|[^aeiouy](?=[^aeiouy]))?/gi;
 
 
@@ -82,10 +82,20 @@ $('#test').on('click', function() {
 // DOCUMENT READY
 $(document).ready(function() {
 
+  // if statemenet for if it's a new game
+  // TODO: set the localstorage 'score' as zero once game ends
+
+  if (window.localStorage.getItem('score') != null) {
+    $('#score').text(window.localStorage.getItem('score'));
+  } else {
+    window.localStorage.setItem('score', 0);
+  }
+  console.log(window.localStorage.getItem('score'));
+
   //Incrementing through a list of words stored in storage
   // var counter = window.localStorage.getItem('counter');
   var loWords = JSON.parse(window.localStorage.getItem('word_data'));
-  var word = "";
+  // var word = "";
   // console.log("pre: " + counter);
   // if (counter < loWords.length) {
   //   word = loWords[counter];
@@ -97,8 +107,9 @@ $(document).ready(function() {
   }
 
   var random = getRandomInt(loWords.length);
-  console.log(random);
-  console.log(loWords[random]);
+  console.log("random Number: " + random);
+  console.log("loWords here: " + loWords[random]);
+  word = loWords[random];
 
   loWords.splice(random, 1);
   console.log(loWords);
@@ -134,16 +145,44 @@ $(document).ready(function() {
   });
 
   getUltimate().done(function(json) {
-    console.log(json[dummy]);
-    console.log(parseaws(dummy, json));
-    $('#word-audio').attr('src', parseaws(dummy, json))
+    console.log(json[word]);
+    console.log(parseaws(word, json));
+    $('#word-audio').attr('src', parseaws(word, json))
   })
 
 
 
 
+  // WIN EVENT FUNCTION
+  function win() {
+    window.localStorage.setItem('score', parseInt(window.localStorage.getItem('score')) + 1);
+    console.log(window.localStorage.getItem('score'));
+  }
+
+
+  win();
+
+
+displayWin();
+  //Testing displaying win popup
+  // $(document).on('click', '#skip', function() {
+  //   displayWin();
+  //   setTimeout(function() {
+  //     //TODO: check if all games are won if so go to this page:
+  //     // "./"
+  //     if (JSON.parse(window.localStorage.getItem('word_data')).length <= 0) {
+  //       window.location.href = "./win/index.html";
+  //     } else {
+  //       window.location.href = window.location.href;
+  //     }
+  //
+  //   }, 5000);
+  // })
+
 
 })
+
+
 
 //match:
 //zero or more set of constant, then
@@ -167,4 +206,8 @@ function parseaws(word, json) {
     }
 
   }
+}
+
+function displayWin() {
+  $('#overlay-con').css('display', 'flex');
 }

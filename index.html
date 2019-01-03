@@ -15,7 +15,7 @@
   <link rel="stylesheet" href="./src/css/bootstrap-reboot.css"/>
   <link rel="stylesheet" href="./src/css/stylesheet.css"/>
 </head>
-<body>
+<body id="mainpage">
   <!-- <audio controls src="http://s3.amazonaws.com/audio.vocabulary.com/1.0/us/A/Q60T111AJF9K.mp3"> Click Me <code>audio</code> element.</audio> -->
   <!-- <header>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -72,10 +72,17 @@
           <input id="option1" type="radio" name="file" value="common" checked> Common Mistake Words
           <input id="option2" type="radio" name="file" value="file"> File
         </form>
-        <form id="fileLink">
-          <input id="file-input" type="file" name="pic" accept="image/*">
-          <input type="submit">
-        </form>
+        <!-- <form id="fileLink">
+          <input class="btn btn-secondary btn-sm" id="file-input" type="file" name="pic" accept="image/*">
+        </form> -->
+        <div id="fileLink" class="input-group mb-3">
+          <div class="custom-file">
+            <input type="file" class="custom-file-input" id="file-input"/>
+            <label class="custom-file-label" for="file-input">Choose</label>
+          </div>
+        </div>
+
+
       </div>
       <div class="col-sm-2">
       </div>
@@ -85,7 +92,7 @@
       <div class="col-sm">
       </div>
       <div class="col-sm" id="btnPlay">
-        <a href="stichGame/index.html" class="btn btn-primary btn-lg">Play!</a>
+        <a id="play-button" href="stichGame/index.html" class="btn btn-primary btn-lg">Play!</a>
         <!-- <button type="button" class="btn btn-primary btn-lg" id="btn" href="./stichGame/stichGame.html">Play!</button> -->
       </div>
       <div class="col-sm">
@@ -122,13 +129,28 @@
     }
 
     document.getElementById('file-input').addEventListener('change', readSingleFile, false);
-
+    if ($("#fileLink").css('visibility') == "hidden") {
+      $('#play-button').css('transform', 'translatey(-90px)');
+    }
     $("#option2").click(function() {
-        $("#fileLink").show();
+        $("#fileLink").css('visibility', 'visible');
+        $("#fileLink").fadeTo('slow', 1.0);
+        $('#play-button').css('transform', 'translatey(0)');
     });
       $("#option1").click(function() {
-        $("#fileLink").hide();
+        $("#fileLink").fadeTo('slow', 0, function() {
+          $("#fileLink").css('visibility', 'hidden');
+          $('#play-button').css('transform', 'translatey(-90px)');
+        });
     });
+
+    //changing input form label to file name
+    $('#file-input').on('change',function(){
+     //get the file name
+     var fileName = $(this).val();
+     //replace the "Choose a file" label
+     $('.custom-file-label').html(fileName.replace("C:\\fakepath\\", ""));
+   })
   </script>
   <script src="./src/js/bootstrap.js"></script>
   <script src="./src/js/bootstrap.bundle.js"></script>
