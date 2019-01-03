@@ -71,8 +71,8 @@
       </div>
       <div class="col-sm-8">
         <form>
-          <input type="radio" name="file" value="common" checked> Common Mistake Words
-          <input type="radio" name="file" value="file"> File
+          <input id="option1" type="radio" name="file" value="common" checked> Common Mistake Words
+          <input id="option2" type="radio" name="file" value="file"> File
         </form>
         <form>
           <input type="file" id="file-input">
@@ -101,19 +101,21 @@
   <!-- <script src="./src/js/mainscript.js"></script> -->
   <script>
     function readSingleFile(e) {
-      var file = e.target.files[0];
-      if (!file) {
-        return;
-      }
-      var reader = new FileReader();
-      reader.onload = function (e) {
-        var contents = e.target.result;
-        // Display file content
-        // console.log(contents.split("\n"))
-        // displayContents(contents);
-        window.localStorage.setItem("word_data", ["asfdas", "asdfasfsa", "sadfas"])
-      };
-      reader.readAsText(file);
+        window.localStorage.setItem('counter', 0);
+        var file = e.target.files[0];
+        if (!file) {
+            return;
+        }
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            var contents = e.target.result;
+            // Display file content
+            // console.log(contents.split("\n"))
+            // displayContents(contents);
+            window.localStorage.setItem("word_data", JSON.stringify(contents.split('\n')))
+
+        };
+        reader.readAsText(file);
     }
 
     // function displayContents(contents) {
@@ -122,6 +124,13 @@
     // }
 
     document.getElementById('file-input').addEventListener('change', readSingleFile, false);
+
+    $("#option2").click(function() {
+        $("#fileLink").show();
+    });
+      $("#option1").click(function() {
+        $("#fileLink").hide();
+    });
   </script>
 
   <script src="./src/js/bootstrap.js"></script>
