@@ -117,10 +117,7 @@ $(document).ready(function() {
   console.log("loWords here: " + loWords[random]);
   word = loWords[random];
 
-  loWords.splice(random, 1);
-  // console.log(loWords);
 
-  window.localStorage.setItem('word_data', JSON.stringify(loWords));
 
 
   //displaying syllables to html
@@ -261,8 +258,13 @@ $(document).ready(function() {
   function win() {
     window.localStorage.setItem('score', parseInt(window.localStorage.getItem('score')) + 1);
     console.log(window.localStorage.getItem('score'));
+    loWords.splice(random, 1);
+    // console.log(loWords);
+
+    window.localStorage.setItem('word_data', JSON.stringify(loWords));
     $('#overlay-con').css('display', 'flex');
     $('#wrap').css('filter', 'blur(15px)');
+    checkGameEnd();
   }
 
 
@@ -290,6 +292,8 @@ $(document).ready(function() {
   })
 
   console.log("testing korean: " + syllabify("이지"));
+
+  console.log(JSON.parse(localStorage.getItem('word_data')));
 
 
 })
