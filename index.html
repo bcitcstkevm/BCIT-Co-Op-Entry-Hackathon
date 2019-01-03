@@ -70,7 +70,7 @@
       </div>
       <div class="col-sm-8">
         <form>
-          <input id="option1" type="radio" name="file" value="common" checked> Common Mistake Words
+          <input id="option1" type="radio" name="file" value="common" checked> Commonly Mistake Words
           <input id="option2" type="radio" name="file" value="file"> File
         </form>
         <!-- <form id="fileLink">
@@ -106,6 +106,8 @@
   <script src="./src/js/jquery-3.3.1.js"></script>
   <!-- <script src="./src/js/mainscript.js"></script> -->
   <script>
+  var listCommonlyWords = ["business","calendar","definitely","embarrass","February","grammar","humorous","intelligence","jewellery","leisure","misspell","neighbour","occurrence","parliament","questionnaire","recommend","separate","tomorrow","swimming"];
+
     function readSingleFile(e) {
         window.localStorage.setItem('counter', 0);
         var file = e.target.files[0];
@@ -119,7 +121,7 @@
             // console.log(contents.split("\n"))
             // displayContents(contents);
             window.localStorage.setItem("word_data", JSON.stringify(contents.split('\n')))
-
+            console.log(JSON.stringify(contents.split('\n')));
         };
         reader.readAsText(file);
     }
@@ -129,29 +131,38 @@
     //   element.innerHTML = contents;
     // }
 
-    document.getElementById('file-input').addEventListener('change', readSingleFile, false);
-    if ($("#fileLink").css('visibility') == "hidden") {
-      $('#play-button').css('transform', 'translatey(-90px)');
-    }
-    $("#option2").click(function() {
+      if ($("#option1").is(':checked')) {
+        window.localStorage.setItem("word_data",  JSON.stringify(listCommonlyWords));
+        console.log(listCommonlyWords);
+      }
+
+      document.getElementById('file-input').addEventListener('change', readSingleFile, false);
+      if ($("#fileLink").css('visibility') == "hidden") {
+        $('#play-button').css('transform', 'translatey(-90px)');
+      }
+      $("#option2").click(function() {
         $("#fileLink").css('visibility', 'visible');
         $("#fileLink").fadeTo('slow', 1.0);
         $('#play-button').css('transform', 'translatey(0)');
-    });
+      });
       $("#option1").click(function() {
+        window.localStorage.setItem("word_data",  JSON.stringify(listCommonlyWords));
+        console.log(listCommonlyWords);
         $("#fileLink").fadeTo('slow', 0, function() {
           $("#fileLink").css('visibility', 'hidden');
           $('#play-button').css('transform', 'translatey(-90px)');
         });
-    });
+      });
 
-    //changing input form label to file name
-    $('#file-input').on('change',function(){
-     //get the file name
-     var fileName = $(this).val();
-     //replace the "Choose a file" label
-     $('.custom-file-label').html(fileName.replace("C:\\fakepath\\", ""));
-   })
+      //changing input form label to file name
+      $('#file-input').on('change',function(){
+        //get the file name
+        var fileName = $(this).val();
+        //replace the "Choose a file" label
+        $('.custom-file-label').html(fileName.replace("C:\\fakepath\\", ""));
+      })
+
+
   </script>
 
   <script src="./src/js/bootstrap.js"></script>
