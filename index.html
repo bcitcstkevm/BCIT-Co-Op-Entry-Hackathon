@@ -99,6 +99,7 @@
   <!-- <script src="./src/js/mainscript.js"></script> -->
   <script>
     function readSingleFile(e) {
+        window.localStorage.setItem('counter', 0);
         var file = e.target.files[0];
         if (!file) {
             return;
@@ -110,6 +111,7 @@
             // console.log(contents.split("\n"))
             // displayContents(contents);
             window.localStorage.setItem("word_data", JSON.stringify(contents.split('\n')))
+
         };
         reader.readAsText(file);
     }

@@ -59,6 +59,7 @@
 
 
 var dummy = "vocabulary";
+const syllableRegex = /[^aeiouy]*[aeiouy]+(?:[^aeiouy]*$|[^aeiouy](?=[^aeiouy]))?/gi;
 
 
 
@@ -81,10 +82,36 @@ $('#test').on('click', function() {
 // DOCUMENT READY
 $(document).ready(function() {
 
+  //Incrementing through a list of words stored in storage
+  // var counter = window.localStorage.getItem('counter');
+  var loWords = JSON.parse(window.localStorage.getItem('word_data'));
+  var word = "";
+  // console.log("pre: " + counter);
+  // if (counter < loWords.length) {
+  //   word = loWords[counter];
+  //   window.localStorage.setItem('counter', ++counter);
+  // }
 
-  console.log(JSON.parse(window.localStorage.getItem('word_data')));
+  function getRandomInt(max) {
+    return Math.floor(Math.random() * Math.floor(max));
+  }
+
+  var random = getRandomInt(loWords.length);
+  console.log(random);
+  console.log(loWords[random]);
+
+  loWords.splice(random, 1);
+  console.log(loWords);
+
+  window.localStorage.setItem('word_data', JSON.stringify(loWords));
 
 
+
+
+
+
+
+  //Loading audio file
   var audio = document.getElementById('word-audio');
 
   $('.syllable').randomizeBlocks();
@@ -113,7 +140,24 @@ $(document).ready(function() {
   })
 
 
+
+
+
 })
+
+//match:
+//zero or more set of constant, then
+//one or more set of set of vowels, then,
+//either:
+//consonant followed by end of word, or,
+//consonant followed by another consonant
+
+
+
+function syllabify(words) {
+    //takes a string and returns a list
+    return words.match(syllableRegex);
+}
 
 function parseaws(word, json) {
   var loLinks = json[word];
