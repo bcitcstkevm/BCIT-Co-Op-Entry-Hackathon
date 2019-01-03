@@ -1,2 +1,2 @@
-island
+solution
 화장실
