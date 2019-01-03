@@ -190,18 +190,36 @@ $(document).ready(function() {
 
   $('#half-speed').on('click', function() {
     audio.playbackRate = 0.5;
+    document.getElementById("half-speed").style = "background-color:#FFD972";
+    document.getElementById("quarter-speed").style = "background-color:#FCBCB8";
+    document.getElementById("full-speed").style = "background-color:#FCBCB8";
+    document.getElementById("two-speed").style = "background-color:#FCBCB8";
+    
+
   });
 
   $('#quarter-speed').on('click', function() {
     audio.playbackRate = 0.75;
+    document.getElementById("half-speed").style = "background-color:#FCBCB8";
+    document.getElementById("quarter-speed").style = "background-color:#FFD972";
+    document.getElementById("full-speed").style = "background-color:#FCBCB8";
+    document.getElementById("two-speed").style = "background-color:#FCBCB8";
   });
 
   $('#full-speed').on('click', function() {
     audio.playbackRate = 1.0;
+    document.getElementById("half-speed").style = "background-color:#FCBCB8";
+    document.getElementById("quarter-speed").style = "background-color:#FCBCB8";
+    document.getElementById("full-speed").style = "background-color:#FFD972";
+    document.getElementById("two-speed").style = "background-color:#FCBCB8";
   });
 
   $('#two-speed').on('click', function() {
     audio.playbackRate = 2.0;
+    document.getElementById("half-speed").style = "background-color:#FCBCB8";
+    document.getElementById("quarter-speed").style = "background-color:#FCBCB8";
+    document.getElementById("full-speed").style = "background-color:#FCBCB8";
+    document.getElementById("two-speed").style = "background-color:#FFD972";
   });
 
   getUltimate().done(function(json) {
