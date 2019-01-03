@@ -163,7 +163,7 @@ $(document).ready(function() {
         console.log("already selected syllable");
       } else {
         console.log ("no")
-        divCon.style.backgroundColor = 'rgba(0,0,0,1)';
+        divCon.style.backgroundColor = '#EFA7A7';
         setTimeout(function () {
           divCon.style.backgroundColor = 'white';
         }, 1500);
