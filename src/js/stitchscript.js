@@ -119,15 +119,47 @@ $(document).ready(function() {
   console.log(listSyllables);
   console.log(syllabify(word));
   console.log(listSyllables.length);
+
+  var addedList = [];
+
   for (var i = 0; i < listSyllables.length; i++){
-    var div = `<div class="syllable">${listSyllables[i]}</div>`
+    var counter = 1;
+    var clickedWord = "";
+    var div = $(`<div class="syllable" id="${i}">${listSyllables[i]}</div>`);
     $('#mainContent').append(div);
+    $('#mainContent div').on('click', function clickHandler(){
+      console.log(div);
+      if(div.attr('id') < counter){
+        $(this).css('background-color', 'green');
+        console.log("hello");
+        clickedWord += div.innerHTML;
+        checkCorrect(clickedWord);
+        counter++;
+      }else{
+        div.style = "background-color: blue;"
+        setTimeout(function () {
+          div.style = "background-color: white;"
+        }, 1000);
+      }
+    })
   }
+<<<<<<< HEAD
   
 
 >>>>>>> f94d2b401c854d58895a86b027c8e236a0945c54:src/js/stitchscript.js
+=======
+>>>>>>> a3cfaaac0b9b8472c121e916a6e3253c6017d534
 
+  function checkCorrect(clickedWord) {
+    if(clickedWord === word){
+        setTimeout(function () {
+            window.alert("You won the game.");
+            location.reload();}, 0);
+    }
+}
+  
 
+  
   //Loading audio file
   var audio = document.getElementById('word-audio');
 
@@ -156,7 +188,25 @@ $(document).ready(function() {
     $('#word-audio').attr('src', parseaws(dummy, json))
   })
 
+  var word = "vocabulary"
+  var syllables = ["vo", "ca", "bu", "lary", "test", "test", "test", "test"]
+  var addedList = [];
+  var attempts = 0;
+  var attemptsDOM = document.createElement("P");
+  attemptsDOM.id = "attempts";
+  attemptsDOM.innerHTML = "Attempt: 0"; 
+  document.body.appendChild(attemptsDOM);
+  
 
+  
+  function checkCorrect(clickedWord) {
+      if(clickedWord === word){
+          setTimeout(function () {
+              window.alert("You won the game. Attempts: " + attempts);
+              location.reload();}, 0);
+      }
+  }
+  
 
 
 
@@ -184,3 +234,4 @@ function parseaws(word, json) {
 
   }
 }
+
