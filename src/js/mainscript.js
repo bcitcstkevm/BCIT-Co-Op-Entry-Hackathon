@@ -81,7 +81,10 @@ $('#test').on('click', function() {
 // DOCUMENT READY
 $(document).ready(function() {
 
-  console.log(window.localStorage.getItem('word_data')[0]);
+  
+  word_list = window.localStorage.getItem('word_data');
+
+  console.log(word_list[0])
 
 
   var audio = document.getElementById('word-audio');
@@ -106,8 +109,8 @@ $(document).ready(function() {
   });
 
   getUltimate().done(function(json) {
-    console.log(json[dummy]);
-    console.log(parseaws(dummy, json));
+    // console.log(json[dummy]);
+    // console.log(parseaws(dummy, json));
     $('#word-audio').attr('src', parseaws(dummy, json))
   })
 
