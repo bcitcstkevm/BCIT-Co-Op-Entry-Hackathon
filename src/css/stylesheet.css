@@ -12,9 +12,13 @@ body#mainpage{
   height: 100px;
 } */
 
+#mainTitle{
+  font-size: 40pt;
+  font-weight: 700;
+  text-shadow: 2px 2px 	#D3D3D3;
+}
 
-
-#title{
+.title{
   text-align: center;
 }
 

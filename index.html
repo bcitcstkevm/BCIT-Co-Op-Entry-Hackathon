@@ -17,7 +17,7 @@
       <div class="col-sm-2">
       </div>
       <div class="col-sm-8">
-        <h1 id="title">Stitch Vocab Game</h1>
+        <h1 class="title" id="mainTitle">STITCH IT</h1>
       </div>
       <div class="col-sm-2">
       </div>
@@ -26,7 +26,7 @@
       <div class="col-sm-2">
       </div>
       <div class="col-sm-8">
-        <h5 id="title">Click Play To Start Now</h5>
+        <h5 class="title">Click Play To Start Now</h5>
       </div>
       <div class="col-sm-2">
       </div>
@@ -37,7 +37,7 @@
       <div class="col-sm-8">
         <form>
           <input id="option1" type="radio" name="file" value="common" checked> Common Mistaken Words
-          <input style="margin-left: 1em;" id="option2" type="radio" name="file" value="file"> File
+          <input style="margin-left: 1em;" id="option2" type="radio" name="file" value="file"> Select Word Bank File
         </form>
         <!-- <form id="fileLink">
           <input class="btn btn-secondary btn-sm" id="file-input" type="file" name="pic" accept="image/*">
@@ -80,7 +80,7 @@
      $('.custom-file-label').html(fileName.replace("C:\\fakepath\\", ""));
    })
 
-     var listCommonlyWords = ["business","calendar","definitely","embarrass","February","grammar","humorous","intelligence","jewellery","leisure","misspell","neighbour","occurrence","parliament","questionnaire","recommend","separate","tomorrow","swimming"];
+     var listCommonlyWords = ["business","calendar","definitely","embarrass","advantage","grammar","humorous","intelligence","jewellery","leisure","misspell","neighbour","occurrence","parliament","questionnaire","recommend","separate","tomorrow","swimming"];
 
     function readSingleFile(e) {
         window.localStorage.setItem('counter', 0);
