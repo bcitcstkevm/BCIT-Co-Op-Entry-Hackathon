@@ -1,10 +1,4 @@
 <!DOCTYPE html>
-<!-- HomePage -->
-<!-- Connect all the pages together
-    Item 1: Resume
-    Item 2: Projects
-    Item 3: Hobbies -->
-<!-- About Myself -->
 <html lang="en">
 
 <head>
@@ -17,34 +11,6 @@
   <link rel="stylesheet" href="./src/css/stylesheet.css" />
 </head>
 <body id="mainpage">
-  <!-- <audio controls src="http://s3.amazonaws.com/audio.vocabulary.com/1.0/us/A/Q60T111AJF9K.mp3"> Click Me <code>audio</code> element.</audio> -->
-  <!-- <header>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <a class="navbar-brand" href="#">FanFavourites</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNavDropdown">
-        <ul class="navbar-nav">
-          <li class="nav-item active">
-          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">1</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">2</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">3</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">4</a>
-          </li>
-        </ul>
-      </div>
-    </nav>
-  </header> -->
   <div class="container">
     <div class="spacer"></div>
     <div class="row">
@@ -71,7 +37,7 @@
       <div class="col-sm-8">
         <form>
           <input id="option1" type="radio" name="file" value="common" checked> Common Mistake Words
-          <input id="option2" type="radio" name="file" value="file"> File
+          <input style="margin-left: 1em;" id="option2" type="radio" name="file" value="file"> File
         </form>
         <!-- <form id="fileLink">
           <input class="btn btn-secondary btn-sm" id="file-input" type="file" name="pic" accept="image/*">
@@ -79,7 +45,7 @@
         <div id="fileLink" class="input-group mb-3">
           <div class="custom-file">
             <input type="file" class="custom-file-input" id="file-input"/>
-            <label class="custom-file-label" for="file-input">Choose</label>
+            <label class="custom-file-label" for="file-input">Choose File</label>
           </div>
         </div>
 
@@ -106,6 +72,14 @@
   <script src="./src/js/jquery-3.3.1.js"></script>
   <!-- <script src="./src/js/mainscript.js"></script> -->
   <script>
+    //changing input form label to file name
+    $('#file-input').on('change',function(){
+     //get the file name
+     var fileName = $(this).val();
+     //replace the "Choose a file" label
+     $('.custom-file-label').html(fileName.replace("C:\\fakepath\\", ""));
+   })
+   
     function readSingleFile(e) {
         window.localStorage.setItem('counter', 0);
         var file = e.target.files[0];
@@ -145,13 +119,7 @@
         });
     });
 
-    //changing input form label to file name
-    $('#file-input').on('change',function(){
-     //get the file name
-     var fileName = $(this).val();
-     //replace the "Choose a file" label
-     $('.custom-file-label').html(fileName.replace("C:\\fakepath\\", ""));
-   })
+
   </script>
 
   <script src="./src/js/bootstrap.js"></script>

@@ -15,6 +15,8 @@
       // Get viewport dimensions (remove the dimension of the div)
       var h = $container.height() - 10;
       var w = $container.width() - 10;
+      console.log("h: " + h);
+      console.log("w: " + w);
 
       var nh = Math.floor(Math.random() * h);
       var nw = Math.floor(Math.random() * w);
@@ -44,7 +46,7 @@
 
       var greatest = x > y ? x : y;
 
-      var speedModifier = 0.1;
+      var speedModifier = 0.05;
 
       var speed = Math.ceil(greatest / speedModifier);
 
@@ -89,7 +91,7 @@ $(document).ready(function() {
   // TODO: set the localstorage 'score' as zero once game ends
 
   if (window.localStorage.getItem('score') != null) {
-    $('#score').text(window.localStorage.getItem('score'));
+    $('#score').text("Score: " + window.localStorage.getItem('score'));
   } else {
     window.localStorage.setItem('score', 0);
   }
@@ -139,21 +141,28 @@ $(document).ready(function() {
     div.className = "syllable";
     div.id = i + "";
     div.innerHTML = listSyllables[i];
+    div.style.top = getRandomInt(window.innerHeight) / 1.5 + "px";
+    div.style.left = getRandomInt(window.innerWidth) / 1.5 + "px";
 
     div.onclick = ()=>{
-      if (div.getAttribute('id') < counter){
-        div.style = 'background-color: green;';
+      if (div.getAttribute('id') < counter && div.style.backgroundColor != 'green'){
+        div.style.backgroundColor = 'green';
         clickedWord += div.innerHTML;
-        checkCorrect(clickedWord);
+        setTimeout(function() {
+          checkCorrect(clickedWord);
+        }, 100);
+
         console.log("yes")
         counter++;
 
+      } else if (div.style.backgroundColor == 'green') {
+        console.log("already selected syllable");
       } else {
         console.log ("no")
-        div.style = "background-color: blue;";
+        div.style.backgroundColor = 'blue';
         setTimeout(function () {
-          div.style = "background-color: white;";
-        }, 1000);
+          div.style.backgroundColor = 'white';
+        }, 1500);
       }
     }
 
@@ -164,42 +173,12 @@ $(document).ready(function() {
     to_be_hooked.push(div);
     console.log(to_be_hooked)
 
-
-
-
-    // $('#mainContent div').on('click', function clickHandler(){
-    //   console.log(div.attr("id"));
-
-    //   if(div.attr('id') < counter){
-    //
-    //     console.log("hello");
-    //
-    //     counter++;
-    //   }else{
-    //     // div.style = "background-color: blue;"
-    //     $(this).css('background-color', 'blue');
-    //     setTimeout(function () {
-    //       $(this).css('background-color', 'white');
-    //     }, 1000);
-    //   }
-    // })
-
-    //
-
-
   }
 
   to_be_hooked.forEach(element => {
     $('#mainContent').append(element);
   });
 
-  function checkCorrect(clickedWord) {
-    if(clickedWord === word){
-        setTimeout(function () {
-            window.alert("You won the game.");
-            location.reload();}, 0);
-    }
-}
 
 
 
@@ -231,8 +210,8 @@ $(document).ready(function() {
     $('#word-audio').attr('src', parseaws(word, json))
   })
 
-  var word = "vocabulary"
-  var syllables = ["vo", "ca", "bu", "lary", "test", "test", "test", "test"]
+  // var word = "vocabulary"
+  // var syllables = ["vo", "ca", "bu", "lary", "test", "test", "test", "test"]
   var addedList = [];
   var attempts = 0;
   var attemptsDOM = document.createElement("P");
@@ -241,14 +220,15 @@ $(document).ready(function() {
   document.body.appendChild(attemptsDOM);
 
 
-
-  function checkCorrect(clickedWord) {
-      if(clickedWord === word){
-          setTimeout(function () {
-              window.alert("You won the game. Attempts: " + attempts);
-              location.reload();}, 0);
-      }
-  }
+  //
+  // function checkCorrect(clickedWord) {
+  //     if(clickedWord == word){
+  //         setTimeout(function () {
+  //             // window.alert("You won the game. Attempts: " + attempts);
+  //             displayWin();
+  //             location.reload();}, 5000);
+  //     }
+  // }
 
 
 
@@ -260,23 +240,29 @@ $(document).ready(function() {
 
 
   win();
+  function checkCorrect(clickedWord) {
+    if(clickedWord == word){
+      displayWin();
+        setTimeout(function () {
+            // window.alert("You won the game.");
 
+            location.reload();}, 3000);
+    }
+  }
+  // Testing displaying win popup
+  $(document).on('click', '#skip', function() {
+    displayWin();
+    setTimeout(function() {
+      //TODO: check if all games are won if so go to this page:
+      // "./"
+      if (JSON.parse(window.localStorage.getItem('word_data')).length <= 0) {
+        window.location.href = "./win/index.html";
+      } else {
+        window.location.href = window.location.href;
+      }
 
-displayWin();
-  //Testing displaying win popup
-  // $(document).on('click', '#skip', function() {
-  //   displayWin();
-  //   setTimeout(function() {
-  //     //TODO: check if all games are won if so go to this page:
-  //     // "./"
-  //     if (JSON.parse(window.localStorage.getItem('word_data')).length <= 0) {
-  //       window.location.href = "./win/index.html";
-  //     } else {
-  //       window.location.href = window.location.href;
-  //     }
-  //
-  //   }, 5000);
-  // })
+    }, 5000);
+  })
 
 
 })

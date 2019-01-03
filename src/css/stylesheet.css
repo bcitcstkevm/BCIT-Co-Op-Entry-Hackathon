@@ -3,6 +3,8 @@ body#mainpage{
   display: flex;
   align-items: center;
   height: 100vh;
+  background-image: url('../img/bgd.jpg');
+  background-size: cover;
 }
 
 /* .spacer{

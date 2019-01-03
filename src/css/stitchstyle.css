@@ -1,0 +1,92 @@
+body#container {
+  height: 100vh;
+  width: 100%;
+  background-image: url('../img/bgd1.jpg');
+  background-size: cover;
+}
+
+body#winpage {
+  height: 100vh;
+  width: 100%;
+  background-image: url('../img/bgd2.jpg');
+  background-size: cover;
+}
+
+#mainContent {
+  position: relative;
+  height: 80vh;
+  width: 80vh;
+}
+
+div.syllable {
+  padding: 20px;
+  background-color: white;
+  position: absolute;
+  font-size: 15pt;
+  border-radius: 10px;
+}
+
+/*Overlay win word round*/
+#overlay-con {
+  width: 100vw;
+  height: 100vh;
+  z-index: 10;
+  background-color: rgba(230, 230, 255, 0.6);
+  position: absolute;
+  justify-content: center;
+  align-items:  center;
+  display: none;
+}
+
+#overlay-div{
+  border-radius: 15px;
+  width: 80%;
+  max-width: 500px;
+  height: 300px;
+  box-shadow: 0 0 40px rgba(30,30,30,1);
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+
+}
+
+#overlay-proceed {
+  position: absolute;
+  bottom: 5px;
+
+
+}
+
+#dot1 {
+  animation: appear 2s infinite;
+  opacity: 0;
+}
+
+#dot2 {
+  /* animation-delay: 0.1s; */
+  animation: appear 2s infinite 0.1s;
+  opacity: 0;
+
+}
+
+#dot3 {
+  /* animation-delay: 0.2s; */
+  animation: appear 2s infinite 0.2s;
+  opacity: 0;
+
+}
+
+@keyframes appear {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+
+}

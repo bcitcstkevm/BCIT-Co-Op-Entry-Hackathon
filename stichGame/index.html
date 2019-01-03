@@ -7,13 +7,16 @@
     <link rel="stylesheet" href="../src/css/bootstrap.css"/>
     <link rel="stylesheet" href="../src/css/bootstrap-grid.css"/>
     <link rel="stylesheet" href="../src/css/bootstrap-reboot.css"/>
-    <link rel="stylesheet" href="../src/css/stylesheet.css"/>
+    <link rel="stylesheet" href="../src/css/stitchstyle.css"/>
   </head>
   <body id="container" style = "background-color: rgba(255, 200, 255, 0.4);">
     <div id="overlay-con">
       <div id="overlay-div">
         <h1 style="color: rgba(50,50,50,1)">CORRECT</h1>
-        <h3 id="overlay-proceed">Proceeding to next round...</h3>
+        <h3 id="overlay-proceed"><span id="dot1">.</span>
+          <span id="dot2">.</span>
+          <span id="dot3">.</span>
+        </h3>
       </div>
     </div>
     <div id="audio-container">
@@ -27,8 +30,7 @@
 
 
 
-      <p style="top:0; right: 6%; position: fixed; color: white; font-size: 30px;">Score:</p>
-      <p id="score" style = "top:0; right: 4%; position: fixed; color:white; font-size: 30px;">0</p>
+      <p id="score" style = "top:0; right: 4%; position: fixed; color:white; font-size: 30px;">Score: 0</p>
 
       <button id="skip" style= "bottom:2%; right: 50%; position:fixed; font-size: 23px;">Skip</button>
 
