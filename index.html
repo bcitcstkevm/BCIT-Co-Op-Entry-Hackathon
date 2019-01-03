@@ -6,14 +6,15 @@
     Item 3: Hobbies -->
 <!-- About Myself -->
 <html lang="en">
+
 <head>
   <title>Fan Favourites</title>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <link rel="stylesheet" href="./src/css/bootstrap.css"/>
-  <link rel="stylesheet" href="./src/css/bootstrap-grid.css"/>
-  <link rel="stylesheet" href="./src/css/bootstrap-reboot.css"/>
-  <link rel="stylesheet" href="./src/css/stylesheet.css"/>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="./src/css/bootstrap.css" />
+  <link rel="stylesheet" href="./src/css/bootstrap-grid.css" />
+  <link rel="stylesheet" href="./src/css/bootstrap-reboot.css" />
+  <link rel="stylesheet" href="./src/css/stylesheet.css" />
 </head>
 <body id="mainpage">
   <!-- <audio controls src="http://s3.amazonaws.com/audio.vocabulary.com/1.0/us/A/Q60T111AJF9K.mp3"> Click Me <code>audio</code> element.</audio> -->
@@ -123,10 +124,10 @@
         reader.readAsText(file);
     }
 
-    function displayContents(contents) {
-        var element = document.getElementById('file-content');
-        element.innerHTML = contents;
-    }
+    // function displayContents(contents) {
+    //   var element = document.getElementById('file-content');
+    //   element.innerHTML = contents;
+    // }
 
     document.getElementById('file-input').addEventListener('change', readSingleFile, false);
     if ($("#fileLink").css('visibility') == "hidden") {
@@ -152,7 +153,9 @@
      $('.custom-file-label').html(fileName.replace("C:\\fakepath\\", ""));
    })
   </script>
+
   <script src="./src/js/bootstrap.js"></script>
   <script src="./src/js/bootstrap.bundle.js"></script>
 </body>
+
 </html>

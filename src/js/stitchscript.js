@@ -78,6 +78,9 @@ $('#test').on('click', function() {
 })
 
 
+function getRandomInt(max) {
+  return Math.floor(Math.random() * Math.floor(max));
+}
 
 // DOCUMENT READY
 $(document).ready(function() {
@@ -102,9 +105,7 @@ $(document).ready(function() {
   //   window.localStorage.setItem('counter', ++counter);
   // }
 
-  function getRandomInt(max) {
-    return Math.floor(Math.random() * Math.floor(max));
-  }
+
 
   var random = getRandomInt(loWords.length);
   console.log("random Number: " + random);
@@ -112,13 +113,93 @@ $(document).ready(function() {
   word = loWords[random];
 
   loWords.splice(random, 1);
-  console.log(loWords);
+  // console.log(loWords);
 
   window.localStorage.setItem('word_data', JSON.stringify(loWords));
 
 
+  //displaying syllables to html
+  var listSyllables = [];
+  listSyllables = syllabify(word);
+  console.log(word)
+
+  // console.log(listSyllables);
+  // console.log(syllabify(word));
+  // console.log(listSyllables.length);
+
+  var addedList = [];
+
+  let counter = 1;
+  let clickedWord = "";
+  let to_be_hooked = [];
+
+  for (var i = 0; i < listSyllables.length; i++){
+    //
+    let div = document.createElement("div")
+    div.className = "syllable";
+    div.id = i + "";
+    div.innerHTML = listSyllables[i];
+
+    div.onclick = ()=>{
+      if (div.getAttribute('id') < counter){
+        div.style = 'background-color: green;';
+        clickedWord += div.innerHTML;
+        checkCorrect(clickedWord);
+        console.log("yes")
+        counter++;
+
+      } else {
+        console.log ("no")
+        div.style = "background-color: blue;";
+        setTimeout(function () {
+          div.style = "background-color: white;";
+        }, 1000);
+      }
+    }
+
+    // var div = $(`<div class="syllable" id="${i}">${listSyllables[i]}</div>`);
+
+    // div.innerHTML = "hello";
+
+    to_be_hooked.push(div);
+    console.log(to_be_hooked)
 
 
+
+
+    // $('#mainContent div').on('click', function clickHandler(){
+    //   console.log(div.attr("id"));
+
+    //   if(div.attr('id') < counter){
+    //
+    //     console.log("hello");
+    //
+    //     counter++;
+    //   }else{
+    //     // div.style = "background-color: blue;"
+    //     $(this).css('background-color', 'blue');
+    //     setTimeout(function () {
+    //       $(this).css('background-color', 'white');
+    //     }, 1000);
+    //   }
+    // })
+
+    //
+
+
+  }
+
+  to_be_hooked.forEach(element => {
+    $('#mainContent').append(element);
+  });
+
+  function checkCorrect(clickedWord) {
+    if(clickedWord === word){
+        setTimeout(function () {
+            window.alert("You won the game.");
+            location.reload();}, 0);
+    }
+}
 
 
 
@@ -150,6 +231,24 @@ $(document).ready(function() {
     $('#word-audio').attr('src', parseaws(word, json))
   })
 
+  var word = "vocabulary"
+  var syllables = ["vo", "ca", "bu", "lary", "test", "test", "test", "test"]
+  var addedList = [];
+  var attempts = 0;
+  var attemptsDOM = document.createElement("P");
+  attemptsDOM.id = "attempts";
+  attemptsDOM.innerHTML = "Attempt: 0";
+  document.body.appendChild(attemptsDOM);
+
+
+
+  function checkCorrect(clickedWord) {
+      if(clickedWord === word){
+          setTimeout(function () {
+              window.alert("You won the game. Attempts: " + attempts);
+              location.reload();}, 0);
+      }
+  }
 
 
 
@@ -191,12 +290,11 @@ displayWin();
 //consonant followed by end of word, or,
 //consonant followed by another consonant
 
-
-
 function syllabify(words) {
     //takes a string and returns a list
     return words.match(syllableRegex);
 }
+
 
 function parseaws(word, json) {
   var loLinks = json[word];
