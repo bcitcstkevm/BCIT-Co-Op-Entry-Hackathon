@@ -99,15 +99,25 @@ $(document).ready(function() {
   var random = getRandomInt(loWords.length);
   console.log(random);
   console.log(loWords[random]);
-
+  word = loWords[random];
   loWords.splice(random, 1);
   console.log(loWords);
 
   window.localStorage.setItem('word_data', JSON.stringify(loWords));
 
 
+  //displaying syllables to html
+  var listSyllables = [];
+  listSyllables = syllabify(word);
 
-
+  console.log(listSyllables);
+  console.log(syllabify(word));
+  console.log(listSyllables.length);
+  for (var i = 0; i < listSyllables.length; i++){
+    var div = `<div class="syllable">${listSyllables[i]}</div>`
+    $('#mainContent').append(div);
+  }
+  
 
 
 
@@ -152,12 +162,11 @@ $(document).ready(function() {
 //consonant followed by end of word, or,
 //consonant followed by another consonant
 
-
-
 function syllabify(words) {
     //takes a string and returns a list
     return words.match(syllableRegex);
 }
+
 
 function parseaws(word, json) {
   var loLinks = json[word];

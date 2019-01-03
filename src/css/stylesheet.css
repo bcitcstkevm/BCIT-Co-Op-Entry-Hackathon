@@ -27,6 +27,14 @@ form{
 body#container {
   height: 100vh;
   width: 100%;
+
+}
+
+#mainContent {
+  margin-top: 20vh;
+  position: relative;
+  height: 80vh;
+  width: 100%;
 }
 
 div.syllable {
