@@ -104,9 +104,15 @@ $(document).ready(function() {
   //   word = loWords[counter];
   //   window.localStorage.setItem('counter', ++counter);
   // }
-
-
   var random = getRandomInt(loWords.length);
+  while (random == window.localStorage.getItem('randomNumber')) {
+    if (loWords.length <= 1) {
+      break;
+    } else {
+      random = getRandomInt(loWords.length);
+    }
+  }
+  window.localStorage.setItem('randomNumber', random);
   console.log("random Number: " + random);
   console.log("loWords here: " + loWords[random]);
   word = loWords[random];
@@ -146,7 +152,7 @@ $(document).ready(function() {
     divCon.style.left = getRandomInt(window.innerWidth) / 1.5 + "px";
 
     divCon.onclick = ()=>{
-      if (div.getAttribute('id') < counter && div.style.backgroundColor != 'green'){
+      if (div.getAttribute('id') < counter && div.style.backgroundColor != '#A7E8BD'){
         divCon.style.backgroundColor = '#A7E8BD';
         clickedWord += div.innerHTML;
         setTimeout(function() {
@@ -156,11 +162,11 @@ $(document).ready(function() {
         console.log("yes")
         counter++;
 
-      } else if (div.style.backgroundColor == 'green') {
+      } else if (div.style.backgroundColor == '#A7E8BD') {
         console.log("already selected syllable");
       } else {
         console.log ("no")
-        divCon.style.backgroundColor = '#FCBCB8';
+        divCon.style.backgroundColor = 'rgba(0,0,0,1)';
         setTimeout(function () {
           divCon.style.backgroundColor = 'white';
         }, 1500);
@@ -192,34 +198,34 @@ $(document).ready(function() {
   $('#half-speed').on('click', function() {
     audio.playbackRate = 0.5;
     document.getElementById("half-speed").style = "background-color:#FFD972";
-    document.getElementById("quarter-speed").style = "background-color:#FCBCB8";
-    document.getElementById("full-speed").style = "background-color:#FCBCB8";
-    document.getElementById("two-speed").style = "background-color:#FCBCB8";
-    
+    document.getElementById("quarter-speed").style = "background-color:rgba(0,0,0,0)";
+    document.getElementById("full-speed").style = "background-color: rgba(0,0,0,0)";
+    document.getElementById("two-speed").style = "background-color:rgba(0,0,0,0)";
+
 
   });
 
   $('#quarter-speed').on('click', function() {
     audio.playbackRate = 0.75;
-    document.getElementById("half-speed").style = "background-color:#FCBCB8";
+    document.getElementById("half-speed").style = "background-color:rgba(0,0,0,0)";
     document.getElementById("quarter-speed").style = "background-color:#FFD972";
-    document.getElementById("full-speed").style = "background-color:#FCBCB8";
-    document.getElementById("two-speed").style = "background-color:#FCBCB8";
+    document.getElementById("full-speed").style = "background-color:rgba(0,0,0,0)";
+    document.getElementById("two-speed").style = "background-color:rgba(0,0,0,0)";
   });
 
   $('#full-speed').on('click', function() {
     audio.playbackRate = 1.0;
-    document.getElementById("half-speed").style = "background-color:#FCBCB8";
-    document.getElementById("quarter-speed").style = "background-color:#FCBCB8";
+    document.getElementById("half-speed").style = "background-color:rgba(0,0,0,0)";
+    document.getElementById("quarter-speed").style = "background-color:rgba(0,0,0,0)";
     document.getElementById("full-speed").style = "background-color:#FFD972";
-    document.getElementById("two-speed").style = "background-color:#FCBCB8";
+    document.getElementById("two-speed").style = "background-color:rgba(0,0,0,0)";
   });
 
   $('#two-speed').on('click', function() {
     audio.playbackRate = 2.0;
-    document.getElementById("half-speed").style = "background-color:#FCBCB8";
-    document.getElementById("quarter-speed").style = "background-color:#FCBCB8";
-    document.getElementById("full-speed").style = "background-color:#FCBCB8";
+    document.getElementById("half-speed").style = "background-color:rgba(0,0,0,0)";
+    document.getElementById("quarter-speed").style = "background-color:rgba(0,0,0,0)";
+    document.getElementById("full-speed").style = "background-color:rgba(0,0,0,0)";
     document.getElementById("two-speed").style = "background-color:#FFD972";
   });
 
@@ -255,12 +261,13 @@ $(document).ready(function() {
   function win() {
     window.localStorage.setItem('score', parseInt(window.localStorage.getItem('score')) + 1);
     console.log(window.localStorage.getItem('score'));
+    $('#overlay-con').css('display', 'flex');
+    $('#wrap').css('filter', 'blur(15px)');
   }
 
 
   function checkCorrect(clickedWord) {
     if(clickedWord == word){
-      displayWin();
       win();
         setTimeout(function () {
             // window.alert("You won the game.");
@@ -268,19 +275,18 @@ $(document).ready(function() {
             location.reload();}, 3000);
     }
   }
+
+  function checkGameEnd() {
+    if (JSON.parse(localStorage.getItem('word_data')) < 1) {
+      displayFinalWin();
+    }
+  }
+
+  checkGameEnd();
+
   // Testing displaying win popup
   $(document).on('click', '#skip', function() {
-    displayWin();
-    setTimeout(function() {
-      //TODO: check if all games are won if so go to this page:
-      // "./"
-      if (JSON.parse(window.localStorage.getItem('word_data')).length <= 0) {
-        window.location.href = "./win/index.html";
-      } else {
-        window.location.href = window.location.href;
-      }
-
-    }, 5000);
+    window.location.href = window.location.href;
   })
 
   console.log("testing korean: " + syllabify("이지"));
@@ -329,7 +335,9 @@ function parseaws(word, json) {
   return loLinks[0];
 }
 
-function displayWin() {
-  $('#overlay-con').css('display', 'flex');
-  $('#wrap').css('filter', 'blur(15px)');
+function displayFinalWin() {
+  window.localStorage.clear();
+  setTimeout(function() {
+    window.location.href = "./win/index.html";
+  }, 200)
 }

@@ -12,7 +12,12 @@ body#winpage {
   background-image: url('../img/bgd2.jpg');
   background-size: cover;
   color: "color: rgba(50,50,50,1)";
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
+
 
 #mainContent {
   position: relative;
@@ -43,8 +48,6 @@ div.syllable {
 #skip {
   z-index: 10;
 }
-
-
 
 
 

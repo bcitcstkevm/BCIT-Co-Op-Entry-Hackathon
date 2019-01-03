@@ -14,21 +14,22 @@
       display: block;
       margin: auto;
       text-align: center;
+      padding-top: 10px;
     }
 
     #play-back-audio{
       display:block;
     }
     .speed {
-      background-color: #FCBCB8;
+      /* background-color: #FCBCB8; */
       display: inline-block;
-      border-radius: 5px;
-      width: 40px;
-      text-align: center;
+      /* border-radius: 5px; */
+      /* width: 40px; */
+      /* text-align: center; */
     }
 
     .speed:hover {
-      background-color: #FFD972;
+      /* background-color: #FFD972; */
     }
 
   </style>
@@ -44,14 +45,15 @@
       </h3>
     </div>
   </div>
+  <div id="wrap">
   <div id="audio-container">
     <audio id="word-audio" controls src="http://s3.amazonaws.com/audio.vocabulary.com/1.0/us/A/Q60T111AJF9K.mp3"> Click
       Me <code>audio</code> element.</audio>
     <div id="play-back-buttons">
-      <div class='speed' id="half-speed">0.5x</div>
-      <div class='speed' id="quarter-speed">0.75x</div>
-      <div class='speed' id="full-speed">1.0x</div>
-      <div class='speed' id="two-speed">2.0x</div>
+      <div class='speed btn btn-outline-info' id="half-speed">0.5x</div>
+      <div class='speed btn btn-outline-info' id="quarter-speed">0.75x</div>
+      <div class='speed btn btn-outline-info' id="full-speed">1.0x</div>
+      <div class='speed btn btn-outline-info' id="two-speed">2.0x</div>
 
     </div>
 
@@ -62,11 +64,9 @@
 
     <p id="score" style="top:0; right: 4%; position: fixed; color:white; font-size: 30px;">Score: 0</p>
 
-    <button id="skip" style="bottom:2%; right: 50%; position:fixed; font-size: 23px;">Skip</button>
-
-      <button id="skip" class="btn btn-secondary btn-lg" style= "bottom:2%; right: 50%; position:fixed;">Skip</button>
     </div>
-    </div>
+  </div>
+    <button id="skip" class="btn btn-secondary btn-lg" style="bottom:2%; right: 45%; position: fixed;">Skip</button>
   <script>
 
       let startscore = parseInt(0);
