@@ -15,8 +15,6 @@
       // Get viewport dimensions (remove the dimension of the div)
       var h = $container.height() - 10;
       var w = $container.width() - 10;
-      console.log("h: " + h);
-      console.log("w: " + w);
 
       var nh = Math.floor(Math.random() * h);
       var nw = Math.floor(Math.random() * w);
@@ -62,8 +60,8 @@
 
 var word = "vocabulary";
 const syllableRegex = /[^aeiouy]*[aeiouy]+(?:[^aeiouy]*$|[^aeiouy](?=[^aeiouy]))?/gi;
-
-
+const englishRegex = /^[a-zA-Z0-9?><;,{}[\]\-_+=!@#$%\^&*|']+$/;
+// const englishRegex = /^[a-zA-Z0-9]+$/;
 
 //----------------------------------------------
 
@@ -108,7 +106,6 @@ $(document).ready(function() {
   // }
 
 
-
   var random = getRandomInt(loWords.length);
   console.log("random Number: " + random);
   console.log("loWords here: " + loWords[random]);
@@ -137,16 +134,20 @@ $(document).ready(function() {
 
   for (var i = 0; i < listSyllables.length; i++){
     //
-    let div = document.createElement("div")
+    let divCon = document.createElement("div");
+    divCon.id = "divCon";
+    divCon.className = "syllable";
+    let div = document.createElement("div");
+    divCon.appendChild(div);
     div.className = "syllable";
     div.id = i + "";
     div.innerHTML = listSyllables[i];
-    div.style.top = getRandomInt(window.innerHeight) / 1.5 + "px";
-    div.style.left = getRandomInt(window.innerWidth) / 1.5 + "px";
+    divCon.style.top = getRandomInt(window.innerHeight) / 1.5 + "px";
+    divCon.style.left = getRandomInt(window.innerWidth) / 1.5 + "px";
 
-    div.onclick = ()=>{
+    divCon.onclick = ()=>{
       if (div.getAttribute('id') < counter && div.style.backgroundColor != 'green'){
-        div.style.backgroundColor = 'green';
+        divCon.style.backgroundColor = '#A7E8BD';
         clickedWord += div.innerHTML;
         setTimeout(function() {
           checkCorrect(clickedWord);
@@ -159,9 +160,9 @@ $(document).ready(function() {
         console.log("already selected syllable");
       } else {
         console.log ("no")
-        div.style.backgroundColor = 'blue';
+        divCon.style.backgroundColor = '#FCBCB8';
         setTimeout(function () {
-          div.style.backgroundColor = 'white';
+          divCon.style.backgroundColor = 'white';
         }, 1500);
       }
     }
@@ -170,8 +171,8 @@ $(document).ready(function() {
 
     // div.innerHTML = "hello";
 
-    to_be_hooked.push(div);
-    console.log(to_be_hooked)
+    to_be_hooked.push(divCon);
+    console.log(to_be_hooked);
 
   }
 
@@ -205,19 +206,19 @@ $(document).ready(function() {
   });
 
   getUltimate().done(function(json) {
-    console.log(json[word]);
-    console.log(parseaws(word, json));
+    console.log("the ultimate word: " + json[word]);
+    console.log("hi: " + parseaws(word, json));
     $('#word-audio').attr('src', parseaws(word, json))
   })
 
   // var word = "vocabulary"
   // var syllables = ["vo", "ca", "bu", "lary", "test", "test", "test", "test"]
-  var addedList = [];
-  var attempts = 0;
-  var attemptsDOM = document.createElement("P");
-  attemptsDOM.id = "attempts";
-  attemptsDOM.innerHTML = "Attempt: 0";
-  document.body.appendChild(attemptsDOM);
+  // var addedList = [];
+  // var attempts = 0;
+  // var attemptsDOM = document.createElement("P");
+  // attemptsDOM.id = "attempts";
+  // attemptsDOM.innerHTML = "Attempt: 0";
+  // document.body.appendChild(attemptsDOM);
 
 
   //
@@ -239,10 +240,10 @@ $(document).ready(function() {
   }
 
 
-  win();
   function checkCorrect(clickedWord) {
     if(clickedWord == word){
       displayWin();
+      win();
         setTimeout(function () {
             // window.alert("You won the game.");
 
@@ -264,6 +265,8 @@ $(document).ready(function() {
     }, 5000);
   })
 
+  console.log("testing korean: " + syllabify("이지"));
+
 
 })
 
@@ -276,22 +279,39 @@ $(document).ready(function() {
 //consonant followed by end of word, or,
 //consonant followed by another consonant
 
-function syllabify(words) {
+
+function syllabify(word) {
     //takes a string and returns a list
-    return words.match(syllableRegex);
+    if (englishRegex.test(word) ) {
+      return word.match(syllableRegex);
+    } else {
+      return asianWord(word);
+    }
+}
+
+function asianWord(word) {
+  var asianBroken = [];
+
+  for (var i = 0; i < word.length; i++) {
+    asianBroken[i] = word[i];
+  }
+  return asianBroken;
 }
 
 
 function parseaws(word, json) {
   var loLinks = json[word];
+  console.log("parseaws: " + word);
   for (var i = 0; i < loLinks.length; i++) {
     if (loLinks[i].startsWith("http://s3.amazonaws.com")) {
       return loLinks[i];
     }
 
   }
+  return loLinks[0];
 }
 
 function displayWin() {
   $('#overlay-con').css('display', 'flex');
+  $('#wrap').css('filter', 'blur(15px)');
 }

@@ -5,6 +5,7 @@ body#mainpage{
   height: 100vh;
   background-image: url('../img/bgd.jpg');
   background-size: cover;
+  color: "color: rgba(50,50,50,1)";
 }
 
 /* .spacer{
@@ -49,44 +50,4 @@ body#container {
   position: relative;
   height: 80vh;
   width: 100%;
-}
-
-div.syllable {
-  width: 50px;
-  height: 50px;
-  background-color: red;
-  position: fixed;
-  top: 100px;
-  left: 100px;
-}
-
-/*Overlay win word round*/
-#overlay-con {
-  width: 100vw;
-  height: 100vh;
-  z-index: 10;
-  background-color: rgba(230, 230, 255, 0.6);
-  position: absolute;
-  justify-content: center;
-  align-items:  center;
-  display: none;
-
-}
-
-#overlay-div{
-  border-radius: 15px;
-  width: 500px;
-  height: 300px;
-  box-shadow: 0 0 40px rgba(30,30,30,1);
-  background-color: rgba(200,200,200,1);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-
-}
-
-#overlay-proceed {
-  position: absolute;
-  bottom: 5px;
 }

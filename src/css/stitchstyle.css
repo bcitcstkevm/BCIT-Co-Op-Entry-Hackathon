@@ -3,6 +3,7 @@ body#container {
   width: 100%;
   background-image: url('../img/bgd1.jpg');
   background-size: cover;
+  color: "color: rgba(50,50,50,1)";
 }
 
 body#winpage {
@@ -10,28 +11,54 @@ body#winpage {
   width: 100%;
   background-image: url('../img/bgd2.jpg');
   background-size: cover;
+  color: "color: rgba(50,50,50,1)";
 }
 
 #mainContent {
   position: relative;
   height: 80vh;
-  width: 80vh;
+  width: 80vw;
 }
 
 div.syllable {
-  padding: 20px;
-  background-color: white;
-  position: absolute;
+  /* padding: 20px; */
+  /* background-color: white; */
+  /* position: absolute; */
   font-size: 15pt;
-  border-radius: 10px;
+  /* border-radius: 10px; */
+  font-weight: bold;
 }
 
+#divCon {
+  width: 4em;
+  height: 4em;
+  border-radius: 50%;
+  background-color: white;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#skip {
+  z-index: 10;
+}
+
+
+
+
+
+
+
 /*Overlay win word round*/
+#wrap {
+  filter: none;
+}
 #overlay-con {
   width: 100vw;
   height: 100vh;
   z-index: 10;
-  background-color: rgba(230, 230, 255, 0.6);
+  /* background-color: rgba(230, 230, 255, 0.6); */
   position: absolute;
   justify-content: center;
   align-items:  center;
@@ -43,18 +70,25 @@ div.syllable {
   width: 80%;
   max-width: 500px;
   height: 300px;
-  box-shadow: 0 0 40px rgba(30,30,30,1);
-  background-color: white;
+  /* box-shadow: 0 0 40px rgba(30,30,30,1); */
+  /* background-color: white; */
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
+  font-weight: bold;
+  color: rgb(9, 190, 97);
+}
 
+#overlay-div h1 {
+  text-shadow: 0 2px 2px black;
+  font-weight: bold;
 }
 
 #overlay-proceed {
   position: absolute;
   bottom: 5px;
+  font-weight: bold;
 
 
 }
