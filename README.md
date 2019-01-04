@@ -1,2 +1,2 @@
 # HackathonJan2nd
-Group 4's code for Co-op Hackathon
+This repo holds the code for Group 4's participation at the Co-op Hackathon.
